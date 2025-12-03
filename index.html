@@ -181,3 +181,94 @@ href="https://img.postershop.me/24563/7e03a3e3-33e8-4bc9-96a7-54f15f322b4b_image
 
     
     <div class="float-end d-none d-md-block"></div></div><div class="ms-2 d-md-none"></div></div></div></div></section></div></main><div class="container"><div class="row"><div class="col-12 col-md"><div class="d-block"><p class="mb-4"><a class="text-decoration-none text-body" target="_blank" rel="noreferrer" href="https://maps.google.com/?q=Oybek ko&#x27;chasi 44, Тоshkent, Toshkent">Oybek ko&#x27;chasi 44, Тоshkent, Toshkent</a></p><div class="mb-4"><span class="my-0 text-muted me-1">Время работы:</span><span class="my-0">08:00 – 00:00</span></div></div></div></div><p class="mx-auto text-center my-4">Сделано с ❤️ от <a href="https://www.instagram.com/mustafa.cafe?igsh=bWVyY29zaHp6Z211" class="text-body" target="_blank">MUSTAFA</a></p></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"navbar":{"socials":{"vk":null,"facebook":null,"twitter":null,"google":null,"instagram":null,"youtube":null,"odnoklassniki":null,"telegram":null},"pages":[]},"slider":[],"settings":{"lang":"ru","siteLang":"ru","accountEmail":"mustafaturkishcuisine@gmail.com","email":null,"shouldRedirectToPsMe":true,"favicon":null,"logo":null,"logoWidth":0,"logoHeight":0,"country":"UZ","currency":{"currency_id":12,"pos_id":14,"name":"Узбекский сум","code":"сўм","symbol":"СУМ","iso_code":"UZS","iso_number":"860"},"shopName":"Mustafa","customDomain":null,"siteDomain":"mustafa2.ps.me","staticPageUrlPrefix":"/page/","freeDeliveryOrderAmount":0,"deliveryPrice":0,"minOrderAmount":0,"posAccountNumber":"953968","posAccountName":"mustafa2","customJS":null,"phone":null,"mainPageSeoTitle":"Mustafa в ","mainPageSeoDescription":null,"deliveryColor":"#FF0000","deliveryColorTheme":2,"blockShop":false,"showCart":false,"showSiteMode":false,"customCssDelivery":null,"successfulPaymentText":null,"showDisabledOrdersNotice":false,"isFeedbackConnected":false,"isPaymentConnected":false,"paymentSettings":{"paymentAccounts":[],"currentProvider":null,"availableProviders":{"2":"liqpay"}},"newDesignMenu":false,"useCloudFlareImage":true,"contacts":{"phone":"","email":"","address":"","additional":"","markers":"","fb":"","instagram":"","youtube":"","twitter":"","telegram":"",
+
+
+
+
+
+        <!-- Back-to-top button -->
+<button id="backToTop" class="back-to-top" aria-label="Наверх" title="Наверх">
+  <!-- SVG иконка стрелки вверх -->
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"
+       xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 4L12 20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M5 11L12 4L19 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+
+<style>
+  /* Стили для кнопки "вверх" */
+  .back-to-top {
+    position: fixed;
+    left: 20px;               /* отступ от левого края */
+    bottom: 20px;             /* отступ от низа */
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #e53935;      /* красный цвет (можно заменить) */
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    cursor: pointer;
+    z-index: 999999;          /* очень высокий z-index, чтобы быть поверх всего */
+    transition: transform 0.18s ease, opacity 0.18s ease;
+    opacity: 0.95;
+    outline: none;
+  }
+
+  /* Наведение и фокус (доступность) */
+  .back-to-top:hover,
+  .back-to-top:focus {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+
+  /* Скрытая по умолчанию (появится при прокрутке вниз). Уберите, если хотите всегда показывать */
+  .back-to-top.hidden {
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  /* мелкие улучшения для иконки */
+  .back-to-top svg { display: block; }
+</style>
+
+<script>
+  (function () {
+    const btn = document.getElementById('backToTop');
+
+    // Порог в пикселях: после скролла дальше этого - показываем кнопку
+    const showAfter = 100;
+
+    // Показываем/скрываем кнопку при скролле
+    function checkScroll() {
+      if (window.scrollY > showAfter) {
+        btn.classList.remove('hidden');
+      } else {
+        btn.classList.add('hidden');
+      }
+    }
+
+    // Сразу вызвать, чтобы состояние было правильным при загрузке
+    checkScroll();
+
+    window.addEventListener('scroll', checkScroll, { passive: true });
+
+    // При клике — плавный скролл наверх
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Поддержка клавиш Enter/Space — кнопка элемент <button> уже обрабатывает это по умолчанию,
+    // но на всякий случай можно добавить:
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        btn.click();
+      }
+    });
+  })();
+</script>
