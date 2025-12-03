@@ -185,6 +185,123 @@ href="https://img.postershop.me/24563/7e03a3e3-33e8-4bc9-96a7-54f15f322b4b_image
 
 
 
+        <!-- Вставьте в самый конец перед </body> -->
+<script>
+(function () {
+  // Ждём DOM, чтобы точно работать с document.body
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  function init() {
+    try {
+      // Если кнопка уже есть — используем её
+      let btn = document.getElementById('backToTop');
+      if (!btn) {
+        // Создаём кнопку динамически
+        btn = document.createElement('button');
+        btn.id = 'backToTop';
+        btn.setAttribute('aria-label', 'Наверх');
+        btn.title = 'Наверх';
+        btn.type = 'button';
+        // Вставляем SVG внутрь
+        btn.innerHTML = `
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4L12 20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 11L12 4L19 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>`;
+        document.body.appendChild(btn);
+      }
+
+      // Базовые стили — добавим через element.style, чтобы перебить внешние CSS при проблемах
+      Object.assign(btn.style, {
+        position: 'fixed',
+        left: '20px',
+        bottom: '20px',
+        width: '48px',
+        height: '48px',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#e53935',
+        border: 'none',
+        borderRadius: '8px',
+        boxShadow: '0 6px 14px rgba(0,0,0,0.25)',
+        cursor: 'pointer',
+        zIndex: '2147483647', // максимально возможный z-index
+        transition: 'transform 0.18s ease, opacity 0.18s ease',
+        opacity: '0', // скрыта при загрузке
+        pointerEvents: 'none', // пока скрыта
+      });
+
+      // Класс для видимости (можно дополнительно стилизовать через CSS)
+      const VISIBLE_OPACITY = 0.95;
+      const SHOW_AFTER = 100;
+
+      function show() {
+        btn.style.opacity = String(VISIBLE_OPACITY);
+        btn.style.transform = 'translateY(0)';
+        btn.style.pointerEvents = 'auto';
+      }
+      function hide() {
+        btn.style.opacity = '0';
+        btn.style.transform = 'translateY(8px)';
+        btn.style.pointerEvents = 'none';
+      }
+
+      // Инициализация состояния
+      function checkScroll() {
+        try {
+          if (window.scrollY > SHOW_AFTER) show();
+          else hide();
+        } catch (err) {
+          console.error('backToTop: ошибка при checkScroll:', err);
+        }
+      }
+
+      // Слушатели
+      window.addEventListener('scroll', checkScroll, { passive: true });
+      // Также проверим после небольшого таймаута (например, если страница уже прокручена)
+      setTimeout(checkScroll, 50);
+
+      // Клик — плавный скролл наверх
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        try {
+          // Плавный скролл, fallbacks если не поддерживается
+          if ('scrollBehavior' in document.documentElement.style) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            // fallback: простая анимация
+            let start = window.scrollY;
+            const duration = 300;
+            const startTime = performance.now();
+            function anim(time) {
+              const t = Math.min((time - startTime) / duration, 1);
+              const ease = 1 - Math.pow(1 - t, 3);
+              window.scrollTo(0, Math.round(start * (1 - ease)));
+              if (t < 1) requestAnimationFrame(anim);
+            }
+            requestAnimationFrame(anim);
+          }
+        } catch (err) {
+          console.error('backToTop: ошибка при клике:', err);
+        }
+      });
+
+      // Клавиатура — Enter/Space
+      btn.addEventListener('keyup', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') btn.click();
+      });
+
+      // Для удобства разработчика: если в консоли прописать backToTopDebug(), можно увидеть элемент
+      window.backToTopDebug = function () {
+        console.
+
+
 
      log('backToTop element:', btn);
         console.log('computed style:', getComputedStyle(btn));
