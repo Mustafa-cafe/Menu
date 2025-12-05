@@ -180,6 +180,70 @@
   }
 })();
 </script>
+
+    @mustafa_cusine_bot, [04.12.2025 9:51]
+30vw" srcset="./img/718b499e-eb8a-4421-af24-e755f2f8be7d_image.jpeg" src="./img/718b499e-eb8a-4421-af24-e755f2f8be7d_image.jpeg"/></div></div></div></div></div><div class="col-sm-12 col-md-4 col-lg-3 d-block border-md-0 text-body text-decoration-none py-4 pb-sm-6 false" itemscope="" style="outline:none" itemtype="http://schema.org/Product" data-testid="product_block"><link itemprop="image" href="https://img.postershop.me/24563/aee78e6d-97e8-4240-8e3c-dd853e50b6f4_image.jpeg"/><div class="d-none d-md-block col-md-12 mb-2 pt-1 Index_image__b7nj2"><div class="ratio ratio-1x1"><img itemprop="image" alt="Чобан" loading="lazy" width="300" height="300" decoding="async" data-nimg="1" class="rounded with-placeholder object-fit-cover" style="color:transparent" sizes="(min-width: 1200px) 239px, (min-width: 768px) 195px, (min-width: 576px) 150px, 30vw" srcset="./img/aee78e6d-97e8-4240-8e3c-dd853e50b6f4_image.jpeg" src="./img/aee78e6d-97e8-4240-8e3c-dd853e50b6f4_image.jpeg"/></div></div><div class="d-flex"><div class="w-100"><p data-testid="product_name" class="fs-5 fw-bold mb-1 text-break" itemprop="name">Чобан</p><div class="d-flex flex-wrap mt-2"></div><div itemprop="offers" itemscope="" itemtype="https://schema.org/Offer"><meta itemprop="price" content="35000"/><meta itemprop="priceCurrency" content="UZS"/><span class="mt-1 float-start" data-testid="product_price">45 000 СУМ</span></div><div class="float-end d-none d-md-block"></div></div><div class="ms-2 d-md-none"><div class="mb-2" style="min-width:116px"><div class="ratio ratio-1x1"><img itemprop="image" alt="Чобан" loading="lazy" width="300" height="300" decoding="async" data-nimg="1" class="rounded with-placeholder object-fit-cover" style="color:transparent" sizes="(min-width: 1200px) 239px, (min-width: 768px) 195px, (min-width: 576px) 150px, 30vw" srcset="./img/aee78e6d-97e8-4240-8e3c-dd853e50b6f4_image.jpeg" src="./img/aee78e6d-97e8-4240-8e3c-dd853e50b6f4_image.jpeg"/></div></div></div></div></div></div></section>
+
+@mustafa_cusine_bot, [04.12.2025 11:13]
+
+
+Alisher, [05.12.2025 9:23]
+<script>
+(function(){
+  function cleanMenu() {
+    const keepSauces = ['клаб соус', 'клаб-соус', 'клабсоус', 'сырный соус', 'сырной соус', 'томатный соус', 'томат соус', 'чесночный соус', 'чесночной соус'];
+    const exactRemove = ['салат капрезе', 'тост спешл', 'спешл тост', 'спешл-тост', 'тост спеэшл'];
+
+    const blocks = Array.from(document.querySelectorAll('[data-testid="product_block"]'));
+
+    blocks.forEach(block => {
+      try {
+        // найдем название
+        const nameEl = block.querySelector('[itemprop="name"], [data-testid="product_name"], p[data-testid="product_name"], p[itemprop="name"]');
+        if (!nameEl) return;
+        let name = nameEl.textContent.trim();
+        const lname = name.toLowerCase();
+
+        // если это один из соусов, которые нужно сохранить — не трогаем
+        if (keepSauces.some(s => lname.includes(s))) return;
+
+        // точные совпадения для удаления
+        if (exactRemove.some(x => lname === x)) {
+          block.remove(); return;
+        }
+
+        // если содержит знак '+' (плюс) — считаем добавкой и удаляем
+        if (lname.indexOf('+') !== -1 || /^\s*\+/.test(name)) {
+          block.remove(); return;
+        }
+
+        // если содержит 'добав' -> удаляем (если это не наш сохранённый соус)
+        if (lname.includes('добав')) {
+          block.remove(); return;
+        }
+
+        // удаляем блоки, где есть "тост" и "спеш" (защитили соусы выше)
+        if (lname.includes('тост') && (lname.includes('спеш') || lname.includes('спешл'))) {
+          block.remove(); return;
+        }
+      } catch(e){ console.error(e); }
+    });
+
+    // удалить пустые секции "Добавки"/"Соусы", если в них не осталось product_block
+    const headings = Array.from(document.querySelectorAll('h1,h2,h3,h4,h5,h6'));
+    headings.forEach(h => {
+      const t = (h.textContent || '').toLowerCase();
+      if (t.includes('добав') || t.includes('соус')) {
+        const sec = h.closest('section') || h.parentElement;
+        if (sec && !sec.querySelector('[data-testid="product_block"]')) sec.remove();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cleanMenu);
+  else cleanMenu();
+})();
+</script>
     
 </body>
 </html
